@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>customer_data_confirmation</title>
+</head>
+<body>
+        <p><strong>Thanks for the registration confirm the details</strong></p>
+        <table border = 1>
+        {% for key,value in customer_data.items() %}
+        <tr>
+        <th>{{ key }}</th>
+        <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+</body>
+</html>
