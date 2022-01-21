@@ -14,7 +14,7 @@ def home():
 def login():
     return render_template("login.html")
 
-@app.route('/success',methods=['post','get'])
+@app.route('/success',methods=['post'])
 def success():
     if request.method=="POST":
         session['email']=request.form['email']
@@ -26,7 +26,7 @@ def profile():
         email=session['email']
         return render_template('profile.html',k=email)
     else:
-        return render_template('login_retry.html')
+        return 'please login first'
 
 @app.route('/logout')
 def logout():
@@ -35,13 +35,6 @@ def logout():
         return render_template('logout.html')
     else:
         return 'user already logged out'
-
-# validating using redirect method
-@app.route('/validate',methods=['POST'])
-def validate():
-    if request.method=="POST" and request.form["pass"]=="mani":
-        return redirect(url_for("success"))
-    return redirect(url_for("login"))
 
 if __name__=="__main__":
     app.run("127.0.0.1",5000,debug=True)

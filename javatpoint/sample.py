@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import url_for,redirect,request,render_template,make_response,session
+from flask import url_for,redirect,request,render_template,make_response,session,abort,flash
 
 app=Flask(__name__) #creating flask object
 app.secret_key='abc'
@@ -91,23 +91,23 @@ def error():
 def login():
     return render_template("login.html")
 
-@app.route("/success",methods=['POST'])
+@app.route("/success",methods=['POST','GET'])
 def success():
     if request.method=="POST":
         email=request.form['email']
         password=request.form['pass']
         # print(password)
-    if password=="1":
-        resp=make_response(render_template("success.html"))
-        resp.set_cookie("email",email)
-        resp.set_cookie("password", password)
-        return resp
+    if request.method == "GET":
+        flash("you are logged in ")
+        # k="mani"
+        return redirect(url_for("view_profile"))
     else:
         return redirect(url_for("error"))
 
 @app.route('/viewprofile')
 def view_profile():
     k=request.cookies.get("email")
+    k="mani" #user when cookies are not set
     # resp=make_response(render_template("profile.html"),k=k)
     return render_template("profile.html",k=k)
 
@@ -125,6 +125,17 @@ def get_session():
         s=session['response']
         return render_template("getsession.html",name=s)
 
+# validating using redirect method
+@app.route('/validate',methods=['POST'])
+def validate():
+    if request.method=="POST" and request.form["pass"]=="mani":
+        return redirect(url_for("success"))
+    return redirect(url_for("login"))
+
+# using abort function to display errors
+@app.route('/abort')
+def abort1():
+    abort(403)
 
 
 if __name__=="__main__":
