@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>verify_otp</title>
+</head>
+<body>
+<h3>otp has been send successfully to mail id {{ email }}</h3>
+<h4>check and enter below</h4>
+<form action="/validate" method="post">
+    Enter Otp<input type="text" name="otp_entered">
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
