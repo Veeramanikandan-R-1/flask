@@ -3,7 +3,7 @@
 from flask import Flask
 from flask import url_for,redirect,request,render_template,make_response,session,abort,flash
 import sqlite3
-import os.path
+
 
 
 conn=sqlite3.connect("employees_1.db",check_same_thread=False)
@@ -17,7 +17,7 @@ def index():
 @app.route('/add_employee')
 def employee_adding_fun():
     return render_template("add.html")
-# from flask1.javatpoint.sql_lite import creating_db
+
 @app.route('/savedetails',methods=['POST','GET'])
 def save_detail_fun():
     if request.method == 'POST':

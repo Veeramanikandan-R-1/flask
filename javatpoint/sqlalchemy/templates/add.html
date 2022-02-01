@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Employee</title>
+</head>
+<body>
+    {%- for category,message in get_flashed_messages(with_categories=true) %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+    {%- endfor %}
+    <h2>Employee Information</h2>
+    <form action = "/savedetails" method="post">
+    <table>
+        <tr><td>Name</td><td><input type="text" name="name"></td></tr>
+        <tr><td>Email</td><td><input type="email" name="email"></td></tr>
+        <tr><td>Address</td><td><input type="text" name="address"></td></tr>
+        <tr><td><input type="submit" value="Submit"></td></tr>
+    </table>
+    </form>
+<br>
+    <a href="/listemployees">click to view all employees</a>
+</body>
+</html>
