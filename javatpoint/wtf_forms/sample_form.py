@@ -7,10 +7,10 @@ app=Flask(__name__)
 app.secret_key="dev_key"
 
 class contact_form(Form):
-    name=StringField("Candidate Name",[validators.input_required("Enter name")])
+    name=StringField("Candidate Name",[validators.input_required()])
     gender=RadioField('Gender',choices=[('M',"Male"),('F','Female')])
     address=TextAreaField("Address")
-    email=StringField("email",[validators.input_required("enter email address"),validators.Email('enter email')])
+    email=StringField("email",[validators.input_required(),validators.Email()])
     age=IntegerField('age')
     language=SelectField('programming lang',choices=[('java','Java'),('py','Python')])
     submit=SubmitField('submit')
