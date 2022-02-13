@@ -117,11 +117,13 @@ def view_profile():
 def home1():
     res=make_response("<h4>sess var set, <a href='/get'>get var</a></h4>") #dont use "" in href
     session['response']="session#1"
+    session['email']='mani'
     return res
 
 @app.route('/get')
 def get_session():
     if 'response' in session:
+        print(session)
         s=session['response']
         return render_template("getsession.html",name=s)
 

@@ -3,6 +3,13 @@
     <title>login</title>
 </head>
 <body>
+{% with messages = get_flashed_messages() %}
+         {% if messages %}
+               {% for message in messages %}
+                    <p>{{ message }}</p>
+               {% endfor %}
+         {% endif %}
+      {% endwith %}
     <form method = "post" action = "http://localhost:5000/validate">
         <table>
             <tr><td>Email</td><td><input type = 'email' name = 'email'></td></tr>
